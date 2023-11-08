@@ -14,6 +14,7 @@ void main(void)
 
   P1DIR |= LEDS;
   P1OUT &= ~LEDS;		/* leds initially off */
+  P1OUT |= LED_GREEN;
   
   P1REN |= SWITCHES;		/* enables resistors for switches */
   P1IE |= SWITCHES;		/* enable interrupts from switches */
@@ -32,13 +33,11 @@ switch_interrupt_handler()
   P1IES |= (p1val & SWITCHES);	/* if switch up, sense down */
   P1IES &= (p1val | ~SWITCHES);	/* if switch down, sense up */
 
+  
 /* up=red, down=green */
-  if (p1val & SW1) {
-    P1OUT |= LED_RED;
-    P1OUT &= ~LED_GREEN;
-  } else {
-    P1OUT |= LED_GREEN;
-    P1OUT &= ~LED_RED;
+  if (!(p1val & SW1)) {
+     P1OUT ^= LED_GREEN;
+     P1OUT ^= LED_RED;
   }
 }
 

@@ -4,7 +4,9 @@
 
 
 	.global greenControl
+	.global oncePerSecond
 	.extern P1OUT
+	.extern blinkLimit 
 
 greenControl:
 	cmp #0, r12
@@ -13,3 +15,13 @@ greenControl:
 	pop r0
 off:	and #~64, &P1OUT
 	pop r0
+
+
+oncePerSecond:
+	add #1, &blinkLimit
+	cmp #8, &blinkLimit
+	jnc blinkLimitElse
+	mov #0, &blinkLimit 
+blinkLimitElse:
+	pop r0
+	

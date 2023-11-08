@@ -1,4 +1,4 @@
-//Alternate LEDs from Off, Green, and Red
+ //Alternate LEDs from Off, Green, and Red
 #include <msp430.h>
 #include "libTimer.h"
 #include "led.h"
@@ -14,10 +14,15 @@ int main(void) {
   or_sr(0x18);		/* CPU off, GIE on */
 }
 
+int count = 0;
 
 void
 __interrupt_vec(WDT_VECTOR) WDT()	/* 250 interrupts/sec */
 {
-  P1OUT |= LED_GREEN;
+  if (count == 5){
+    count = 0;
+    P1OUT ^= LED_GREEN;
+  }
+  count++;
 } 
 
