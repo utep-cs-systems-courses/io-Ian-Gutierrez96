@@ -35,13 +35,13 @@ void switch_interrupt_handler()
 
 
 
-  if ((p2val & SW1) ? 0 : 1) {
-
+  if ((p2val & SW2) ? 0 : 1) {
     set_state(SIREN);
-
-  } else if ((p2val & SW2) ? 0 : 1) {
-
-   
+  } else if ((p2val & SW3) ? 0 : 1) {
+    set_state(DIMTOBRIGHT);
+  } else if ((p2val & SW4) ? 0 : 1) {
+    set_state(BRIGHTTODIM);
   }
+ 
 }
  

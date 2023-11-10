@@ -1,6 +1,6 @@
 # makfile configuration
 
-COMMON_OBJECTS  = buzzer.o led.o switches.o sirenStateMachine.o stateMachine.o main.o ../lib/libTimer.a
+COMMON_OBJECTS  =
 
 CPU             = msp430g2553
 
@@ -24,7 +24,7 @@ all: toy.elf
 
 #additional rules for files
 
-toy.elf: ${COMMON_OBJECTS}
+toy.elf: ${COMMON_OBJECTS} buzzer.o led.o switches.o sirenStateMachine.o brightToDimStateMachine.o dimToBrightStateMachine.o stateMachine.o main.o ../lib/libTimer.a
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
 

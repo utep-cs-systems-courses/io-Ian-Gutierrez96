@@ -21,3 +21,9 @@ void advance_siren() {
   count++;
 
 }
+
+void stop_siren() {
+  toggle_green(0);
+  toggle_red(0);
+  buzzer_set_period(0);
+}

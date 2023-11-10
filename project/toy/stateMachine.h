@@ -4,7 +4,9 @@
 
 
 typedef enum {
-  SIREN,
+  SIREN = 1,
+  DIMTOBRIGHT = 2,
+  BRIGHTTODIM = 3,
 
 } State;
 
